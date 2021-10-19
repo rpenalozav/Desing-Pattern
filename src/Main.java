@@ -1,17 +1,17 @@
 import memento.Editor;
 import memento.History;
+import state.BrushTool;
+import state.Canvas;
+import state.EraserTool;
+import state.SelectionTool;
+
+import java.util.concurrent.CancellationException;
 
 public class Main {
     public static void main(String[] args) {
-        var editor = new Editor();
-        var history = new History();
-
-        editor.setContent("a");
-        history.push(editor.creteState());
-        editor.setContent("b");
-        history.push(editor.creteState());
-        editor.setContent("c");
-        editor.restore(history.pop());
-        System.out.println(editor.getContent());
+        var canvas = new Canvas();
+        canvas.setCurrentTool(new EraserTool());
+        canvas.mouseDown();
+        canvas.mouseUp();
     }
 }
